@@ -6,7 +6,9 @@ Parse.Cloud.define("hello", function(request, response) {
     response.success("Hello world!" + (request.params.a + request.params.b));
 });
 
-
+/**
+ *  Delete old events
+ */
 Parse.Cloud.job('delete_expired_events', function(request, status)
 {
     // all access
@@ -18,7 +20,7 @@ Parse.Cloud.job('delete_expired_events', function(request, status)
 
     /** get all the objects with time passed current date **/
     var currentTime = new Date(); // current time
-    query.lessThan('Date', currentTime); // set up to find expired posts
+    query.lessThan('DateEnd', currentTime); // set up to find expired posts
 
     query.find().then( // find and delete
         function (events) { // events = list of expired events
