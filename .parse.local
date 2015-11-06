@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "FreeFoodFinder": {
+      "applicationId": "mX3zY148IWfdhd3QgDjIETqjG8yMM8D9vgZM5VVN"
+    },
+    "_default": {
+      "link": "FreeFoodFinder"
+    }
+  }
+}
