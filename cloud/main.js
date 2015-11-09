@@ -19,8 +19,9 @@ Parse.Cloud.job('delete_expired_events', function(request, status)
     var query = new Parse.Query(DB); 
 
     /** get all the objects with time passed current date **/
-    var currentTime = new Date(); // current time
-    query.lessThan('DateEnd', currentTime); // set up to find expired posts
+    var now = new Date(); // current time
+    var currentTime = now.getTime(); // time in MS after January 1st, 1970
+    query.lessThan('Expiration', currentTime); // set up to find expired posts
 
     query.find().then( // find and delete
         function (events) { // events = list of expired events
