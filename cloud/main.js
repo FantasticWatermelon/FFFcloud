@@ -25,9 +25,10 @@ Parse.Cloud.job('delete_expired_events', function(request, status)
 
     query.find().then( // find and delete
         function (events) { // events = list of expired events
+            var numberOfDeletedEvents = events.length;
             Parse.Object.destroyAll(events, { // destory them
                 success: function() { // on success
-                    status.success('All expired events are removed.');
+                    status.success(numberOfDeletedEvents + ' expired event(s) removed.');
                 },
                 error: function() {   // on failure
                     status.error('Error, expired events are not removed.');
